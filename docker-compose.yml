@@ -1,0 +1,15 @@
+---
+version: '3'
+services:
+  haproxy:
+    image: haproxy:alpine
+    volumes:
+    - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+    ports:
+    - ${HOST_LISTEN_PORT}:${LISTEN_PORT}
+    environment:
+    - GLOBAL_MAX_CONNECTION_NUM
+    - LISTEN_PORT
+    - REVERSE_PROXY_ADDR
+    - REVERSE_PROXY_PORT
+    - REVERSE_PROXY_MAX_CONNECTION_NUM
